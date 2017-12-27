@@ -14,9 +14,21 @@ namespace Validator;
  */
 class Executor
 {
-    public function __construct()
-    {
+    /** @var array $messages */
+    private $messages;
 
+    /** @var array $rules */
+    private $rules;
+
+    /**
+     * Executor constructor.
+     * @param array $rules
+     * @param array $messages
+     */
+    public function __construct(array $rules, array $messages)
+    {
+        $this->rules = $rules;
+        $this->messages = $messages;
     }
 
     /**
@@ -24,6 +36,8 @@ class Executor
      */
     public function execute()
     {
-
+        foreach ($this->rules as $fieldName => $rule) {
+            //if (!isset())
+        }
     }
 }
