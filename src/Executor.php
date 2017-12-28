@@ -27,6 +27,9 @@ class Executor
     /** @var Rule[] $loadedRules */
     private $loadedRules = [];
 
+    /** @var array $errors */
+    protected $errors = [];
+
     /**
      * Executor constructor.
      * @param array $rules
@@ -58,6 +61,15 @@ class Executor
 
             $data = isset($_REQUEST[$fieldName]) ? $_REQUEST[$fieldName] : null;
 
+            if (!$this->loadedRules[$ruleName]->applyRule($data)) {
+                $customErrorMessage = $this->loadedRules[$ruleName]->getMessage();
+
+                if (isset($this->messages[$fieldName])) {
+                    $customErrorMessage = $this->messages[$fieldName];
+                }
+
+                $this->errors[$fieldName][] = $customErrorMessage;
+            }
         }
     }
 }

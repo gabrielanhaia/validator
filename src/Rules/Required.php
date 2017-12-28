@@ -37,6 +37,6 @@ class Required implements Rule
      */
     public function getMessage(): string
     {
-        return 'test';
+        return 'Not specified.';
     }
 }
