@@ -1,6 +1,7 @@
 <?php
 
 namespace Validator;
+use Vendor\Rules\RulesMap;
 
 /**
  * Class RequestValidator
@@ -13,7 +14,8 @@ abstract class RequestValidator
      */
     public function __construct()
     {
-        $executor = new Executor($this->getRules(), $this->getMessages());
+        $rulesMap = new RulesMap();
+        $executor = new Executor($this->getRules(), $this->getMessages(), $rulesMap->getMap());
         $executor->execute();
     }
 
