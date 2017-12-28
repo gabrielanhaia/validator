@@ -5,13 +5,15 @@ namespace Vendor\Rules;
 use Validator\Contract\Rule;
 
 /**
- * Class Required
+ * Class Required.
+ *
+ * @author Gabriel Anhaia <gabriel@mestredev.com.br>
  * @package Vendor\Rules
  */
 class Required implements Rule
 {
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public static function getName(): string
     {
@@ -19,8 +21,7 @@ class Required implements Rule
     }
 
     /**
-     * @param mixed $data
-     * @return bool
+     * {@inheritdoc}
      */
     public function applyRule($data): bool
     {
@@ -32,7 +33,7 @@ class Required implements Rule
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getMessage(): string
     {

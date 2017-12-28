@@ -1,15 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gabrielanhaia
- * Date: 27/12/17
- * Time: 17:57
- */
 
 namespace Vendor\Rules;
 
+use Validator\Contract\Rule;
+
+/**
+ * Map of validation rules and their implementations.
+ *
+ * @author Gabriel Anhaia <gabriel@mestredev.com.br>
+ * @package Vendor\Rules
+ */
 class RulesMap
 {
+    /**
+     * Return the map of validation rules and their implementations.
+     * @return Rule[]
+     */
     public function getMap()
     {
         return [

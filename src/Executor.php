@@ -58,7 +58,6 @@ class Executor
 
             $data = isset($_REQUEST[$fieldName]) ? $_REQUEST[$fieldName] : null;
 
-            $this->loadedRules[$ruleName]->applyRule($data);
         }
     }
 }
