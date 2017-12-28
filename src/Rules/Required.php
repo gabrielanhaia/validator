@@ -10,15 +10,12 @@ use Validator\Contract\Rule;
  */
 class Required implements Rule
 {
-    /** @var string $ruleName */
-    private $ruleName = 'required';
-
     /**
      * @return string
      */
-    public function getRuleName(): string
+    public static function getName(): string
     {
-        return $this->ruleName;
+        return 'required';
     }
 
     /**
@@ -32,5 +29,13 @@ class Required implements Rule
         }
 
         return true;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage(): string
+    {
+        return 'test';
     }
 }

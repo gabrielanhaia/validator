@@ -17,5 +17,10 @@ interface Rule
     /**
      * @return string
      */
-    public function getRuleName(): string;
+    public static function getName(): string;
+
+    /**
+     * @return string
+     */
+    public function getMessage(): string;
 }
