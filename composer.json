@@ -1,6 +1,6 @@
 {
   "name": "gabrielanhaia/validator",
-  "description": "Um pacote para a validação de dados de request.",
+  "description": "Um pacote para a validaÃ§Ã£o de dados de request.",
   "authors": [
     {
       "name": "Gabriel Anhaia",
@@ -8,6 +8,7 @@
     }
   ],
   "require": {
-    "php": ">=7.2"
+    "php": ">=7.0",
+    "digitalnature/php-ref": "dev-master"
   }
 }
