@@ -26,10 +26,11 @@ trait RequestValidatorFormatter
                 $ruleSplited = preg_split('|{|', $rule);
 
                 $parameter = isset($ruleSplited[1]) ? $ruleSplited[1] : null;
+                $parameter = str_replace('}', '', $parameter);
 
                 $formattedRules[$fieldName][] = [
                     'ruleName' => $ruleSplited[0],
-                    'parameter' => str_replace('}', '', $parameter)
+                    'parameter' => $parameter
                 ];
             }
         }
