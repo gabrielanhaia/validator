@@ -25,7 +25,9 @@ class MaximumSize extends Rule
      */
     public function applyRule($data): bool
     {
-        if (sizeof($data) > $this->getParameter()) {
+        $maximumSize = (int) $this->getParameter();
+
+        if (strlen($data) > $maximumSize) {
             return false;
         }
 

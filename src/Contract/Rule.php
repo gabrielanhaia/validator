@@ -50,10 +50,10 @@ abstract class Rule
     }
 
     /**
-     * @param string $parameter
+     * @param mixed $parameter
      * @return Rule
      */
-    public function setParameter(string $parameter): Rule
+    public function setParameter($parameter): Rule
     {
         $this->parameter = $parameter;
         return $this;

@@ -45,7 +45,11 @@ class Executor
     public function execute()
     {
         foreach ($this->rules as $fieldName => $rulesName) {
-            foreach ($rulesName as $ruleName) {
+            foreach ($rulesName as $ruleData) {
+
+                $ruleName = $ruleData['ruleName'];
+                $parameter = $ruleData['parameter'];
+
                 if (!isset($this->rulesMap[$ruleName])) {
                     throw new RuleNotFound($ruleName);
                 }
@@ -56,7 +60,7 @@ class Executor
                     $this->loadedRules[$ruleName] = new $classNamespace;
 
                     if ($this->loadedRules[$ruleName]->hasParameter()) {
-                        // TODO: Set parameter.
+                        $this->loadedRules[$ruleName]->setParameter($parameter);
                     }
                 }
 
