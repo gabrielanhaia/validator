@@ -20,7 +20,8 @@ class RulesMap
     {
         return [
             Required::getName() => Required::class,
-            Email::getName() => Email::class
+            Email::getName() => Email::class,
+            MaximumSize::getName() => MaximumSize::class
         ];
     }
 }

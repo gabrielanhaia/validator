@@ -5,19 +5,19 @@ namespace Vendor\Rules;
 use Validator\Contract\Rule;
 
 /**
- * Class Required.
+ * Class MaximumSize.
  *
  * @author Gabriel Anhaia <gabriel@mestredev.com.br>
  * @package Vendor\Rules
  */
-class Required extends Rule
+class MaximumSize extends Rule
 {
     /**
      * {@inheritdoc}
      */
     public static function getName(): string
     {
-        return 'required';
+        return 'max';
     }
 
     /**
@@ -25,7 +25,7 @@ class Required extends Rule
      */
     public function applyRule($data): bool
     {
-        if (empty($data)) {
+        if (sizeof($data) > $this->getParameter()) {
             return false;
         }
 
@@ -37,6 +37,14 @@ class Required extends Rule
      */
     public function getMessage(): string
     {
-        return 'Not specified.';
+        return 'The size has exceeded the character limit.';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasParameter()
+    {
+        return true;
     }
 }

@@ -10,7 +10,7 @@ use Validator\Contract\Rule;
  * @author Gabriel Anhaia <gabriel@mestredev.com.br>
  * @package Vendor\Rules
  */
-class Email implements Rule
+class Email extends Rule
 {
     /**
      * {@inheritdoc}
