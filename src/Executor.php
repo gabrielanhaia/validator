@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gabrielanhaia
- * Date: 27/12/17
- * Time: 16:47
- */
 
 namespace Validator;
+
 use Validator\Contract\Rule;
 use Validator\Exception\RuleNotFound;
 
@@ -49,28 +44,32 @@ class Executor
      */
     public function execute()
     {
-        foreach ($this->rules as $fieldName => $ruleName) {
-            if (!isset($this->rulesMap[$ruleName])) {
-                throw new RuleNotFound($ruleName);
-            }
-
-            $classNamespace = $this->rulesMap[$ruleName];
-
-            if (!isset($this->loadedRules[$classNamespace])) {
-                $this->loadedRules[$ruleName] = new $classNamespace;
-            }
-
-            $data = isset($_REQUEST[$fieldName]) ? $_REQUEST[$fieldName] : null;
-
-            if (!$this->loadedRules[$ruleName]->applyRule($data)) {
-                $customErrorMessage = $this->loadedRules[$ruleName]->getMessage();
-
-                if (isset($this->messages[$fieldName])) {
-                    $customErrorMessage = $this->messages[$fieldName];
+        foreach ($this->rules as $fieldName => $rulesName) {
+            foreach ($rulesName as $ruleName) {
+                if (!isset($this->rulesMap[$ruleName])) {
+                    throw new RuleNotFound($ruleName);
                 }
 
-                $this->errors[$fieldName][] = $customErrorMessage;
+                $classNamespace = $this->rulesMap[$ruleName];
+
+                if (!isset($this->loadedRules[$classNamespace])) {
+                    $this->loadedRules[$ruleName] = new $classNamespace;
+                }
+
+                $data = isset($_REQUEST[$fieldName]) ? $_REQUEST[$fieldName] : null;
+
+                if (!$this->loadedRules[$ruleName]->applyRule($data)) {
+                    $customErrorMessage = $this->loadedRules[$ruleName]->getMessage();
+
+                    if (isset($this->messages[$fieldName])) {
+                        $customErrorMessage = $this->messages[$fieldName];
+                    }
+
+                    $this->errors[$fieldName][] = $customErrorMessage;
+                }
             }
         }
+
+        ~r($this->errors);
     }
 }
