@@ -61,8 +61,8 @@ class Executor
                 if (!$this->loadedRules[$ruleName]->applyRule($data)) {
                     $customErrorMessage = $this->loadedRules[$ruleName]->getMessage();
 
-                    if (isset($this->messages[$fieldName])) {
-                        $customErrorMessage = $this->messages[$fieldName];
+                    if (isset($this->messages[$fieldName][$ruleName])) {
+                        $customErrorMessage = $this->messages[$fieldName][$ruleName];
                     }
 
                     $this->validationFailures[$fieldName][] = $customErrorMessage;

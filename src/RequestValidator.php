@@ -14,6 +14,8 @@ use Vendor\{
  */
 abstract class RequestValidator
 {
+    use RequestValidatorFormatter;
+
     /**
      * RequestValidator constructor.
      */
@@ -22,7 +24,7 @@ abstract class RequestValidator
         $rulesMap = new RulesMap();
         $executor = new Executor(
             $this->formatRules($this->getRules()),
-            $this->getMessages(),
+            $this->formatCustomMessages($this->getMessages()),
             $rulesMap->getMap()
         );
         $executor->execute();
@@ -41,26 +43,5 @@ abstract class RequestValidator
     public function getMessages(): array
     {
         return [];
-    }
-
-    /**
-     * @param array $rules
-     */
-    private function formatRules(array $rules = [])
-    {
-        if (empty($rules)) {
-            return [];
-        }
-
-        $formattedRules = [];
-        foreach ($rules as $fieldName => $definedRules) {
-            $definedRules = explode(';', $definedRules);
-
-            foreach ($definedRules as $rule) {
-                $formattedRules[$fieldName][] = $rule;
-            }
-        }
-
-        return $formattedRules;
     }
 }
