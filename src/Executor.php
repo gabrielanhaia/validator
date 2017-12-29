@@ -54,6 +54,10 @@ class Executor
 
                 if (!isset($this->loadedRules[$classNamespace])) {
                     $this->loadedRules[$ruleName] = new $classNamespace;
+
+                    if ($this->loadedRules[$ruleName]->hasParameter()) {
+                        // TODO: Set parameter.
+                    }
                 }
 
                 $data = isset($_REQUEST[$fieldName]) ? $_REQUEST[$fieldName] : null;

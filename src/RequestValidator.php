@@ -21,6 +21,8 @@ abstract class RequestValidator
      */
     public function __construct()
     {
+
+        ~r($this->formatRules($this->getRules()));
         $rulesMap = new RulesMap();
         $executor = new Executor(
             $this->formatRules($this->getRules()),

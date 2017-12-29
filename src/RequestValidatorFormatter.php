@@ -23,7 +23,14 @@ trait RequestValidatorFormatter
             $definedRules = explode(';', $definedRules);
 
             foreach ($definedRules as $rule) {
-                $formattedRules[$fieldName][] = $rule;
+                $ruleSplited = preg_split('|{|', $rule);
+
+                $parameter = isset($ruleSplited[1]) ? $ruleSplited[1] : null;
+
+                $formattedRules[$fieldName][] = [
+                    'ruleName' => $ruleSplited[0],
+                    'parameter' => str_replace('}', '', $parameter)
+                ];
             }
         }
 
