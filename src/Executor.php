@@ -8,6 +8,7 @@
 
 namespace Validator;
 use Validator\Contract\Rule;
+use Validator\Exception\RuleNotFound;
 
 /**
  * Class Executor
@@ -50,7 +51,7 @@ class Executor
     {
         foreach ($this->rules as $fieldName => $ruleName) {
             if (!isset($this->rulesMap[$ruleName])) {
-                throw new \Exception('No rule');
+                throw new RuleNotFound($ruleName);
             }
 
             $classNamespace = $this->rulesMap[$ruleName];
