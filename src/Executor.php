@@ -23,8 +23,8 @@ class Executor
     /** @var Rule[] $loadedRules */
     private $loadedRules = [];
 
-    /** @var array $errors */
-    protected $errors = [];
+    /** @var array $validationFailures */
+    protected $validationFailures = [];
 
     /**
      * Executor constructor.
@@ -65,11 +65,11 @@ class Executor
                         $customErrorMessage = $this->messages[$fieldName];
                     }
 
-                    $this->errors[$fieldName][] = $customErrorMessage;
+                    $this->validationFailures[$fieldName][] = $customErrorMessage;
                 }
             }
         }
 
-        ~r($this->errors);
+        ~r($this->validationFailures);
     }
 }
