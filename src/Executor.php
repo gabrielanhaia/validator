@@ -29,18 +29,17 @@ class Executor
      * Executor constructor.
      * @param array $rules
      * @param array $messages
-     * @param array $rulesMap
      * @param Profile $profile
      */
-    public function __construct(array $rules, array $messages, array $rulesMap, Profile $profile)
+    public function __construct(array $rules, array $messages, Profile $profile)
     {
         $this->rulesLoader = new RulesLoaderManager();
+        $this->rulesLoader->includeCustomRules($this->profile->getCustomRules());
 
         $this->rules = $rules;
         $this->messages = $messages;
         $this->profile = $profile;
 
-        $this->rulesLoader->includeCustomRules($this->profile->getCustomRules());
     }
 
     /**

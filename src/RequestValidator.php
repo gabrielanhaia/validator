@@ -26,13 +26,12 @@ abstract class RequestValidator
             $profile = new Profile();
         }
 
-        $rulesMap = new RulesMap();
         $executor = new Executor(
             $this->formatRules($this->getRules()),
             $this->formatCustomMessages($this->getMessages()),
-            $rulesMap->getMap(),
             $profile
         );
+
         $executor->execute();
     }
 
