@@ -67,7 +67,7 @@ class Executor
                 $data = isset($_REQUEST[$fieldName]) ? $_REQUEST[$fieldName] : null;
 
                 if (!$this->loadedRules[$ruleName]->applyRule($data)) {
-                    $customErrorMessage = $this->loadedRules[$ruleName]->getMessage();
+                    $customErrorMessage = $this->getMessage($this->loadedRules[$ruleName]->getMessage());
 
                     if (isset($this->messages[$fieldName][$ruleName])) {
                         $customErrorMessage = $this->messages[$fieldName][$ruleName];
@@ -79,5 +79,18 @@ class Executor
         }
 
         ~r($this->validationFailures);
+    }
+
+    /**
+     * @param array|string $message
+     * @return string
+     */
+    private function getMessage($message): string
+    {
+        if (is_array($message)) {
+            return $message['pt-br'];
+        }
+
+        return $message;
     }
 }

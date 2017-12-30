@@ -37,9 +37,12 @@ class MinimumSize extends Rule
     /**
      * {@inheritdoc}
      */
-    public function getMessage(): string
+    public function getMessage(): array
     {
-        return 'Size did not reach expected number of characters.';
+        return [
+            'en' => 'Size did not reach expected number of characters.',
+            'pt-br' => 'O tamanho é menor que o número minimo de caracteres.'
+        ];
     }
 
     /**

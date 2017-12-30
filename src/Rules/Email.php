@@ -35,8 +35,11 @@ class Email extends Rule
     /**
      * {@inheritdoc}
      */
-    public function getMessage(): string
+    public function getMessage(): array
     {
-        return 'Is not a valid email.';
+        return [
+            'en' => 'Is not a valid email.',
+            'pt-br' => 'Não é um e-mail em fomato válido.'
+        ];
     }
 }

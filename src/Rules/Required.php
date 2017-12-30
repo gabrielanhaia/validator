@@ -35,8 +35,11 @@ class Required extends Rule
     /**
      * {@inheritdoc}
      */
-    public function getMessage(): string
+    public function getMessage(): array
     {
-        return 'Not specified.';
+        return [
+            'Not specified.',
+            'Campo de preenchimento obrigatório.'
+        ];
     }
 }

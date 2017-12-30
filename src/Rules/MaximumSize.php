@@ -37,9 +37,12 @@ class MaximumSize extends Rule
     /**
      * {@inheritdoc}
      */
-    public function getMessage(): string
+    public function getMessage(): array
     {
-        return 'The size has exceeded the character limit.';
+        return [
+            'en' => 'The size has exceeded the character limit.',
+            'pt-br' => 'O tamanho ultrapassa o limite de caracteres.'
+        ];
     }
 
     /**

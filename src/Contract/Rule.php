@@ -30,7 +30,7 @@ abstract class Rule
      * Returns the rule validation failure message.
      * @return string
      */
-    abstract public function getMessage(): string;
+    abstract public function getMessage(): array;
 
     /**
      * Defines whether the validation rule has parameters.
