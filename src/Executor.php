@@ -2,8 +2,7 @@
 
 namespace Validator;
 
-use Validator\Contract\Rule;
-use Validator\Exception\RuleNotFound;
+use Validator\Manager\RulesLoaderManager;
 
 /**
  * Class Executor
@@ -17,17 +16,14 @@ class Executor
     /** @var array $rules */
     private $rules;
 
-    /** @var array $rulesMap */
-    private $rulesMap;
-
-    /** @var Rule[] $loadedRules */
-    private $loadedRules = [];
-
     /** @var Profile $profile */
     private $profile;
 
     /** @var array $validationFailures */
     protected $validationFailures = [];
+
+    /** @var RulesLoaderManager $rulesLoader */
+    private $rulesLoader;
 
     /**
      * Executor constructor.
@@ -38,10 +34,13 @@ class Executor
      */
     public function __construct(array $rules, array $messages, array $rulesMap, Profile $profile)
     {
-        $this->rulesMap = $rulesMap;
+        $this->rulesLoader = new RulesLoaderManager();
+
         $this->rules = $rules;
         $this->messages = $messages;
         $this->profile = $profile;
+
+        $this->rulesLoader->includeCustomRules($this->profile->getCustomRules());
     }
 
     /**
@@ -55,24 +54,16 @@ class Executor
                 $ruleName = $ruleData['ruleName'];
                 $parameter = $ruleData['parameter'];
 
-                if (!isset($this->rulesMap[$ruleName])) {
-                    throw new RuleNotFound($ruleName);
-                }
+                $rule = $this->rulesLoader->getRule($ruleName);
 
-                $classNamespace = $this->rulesMap[$ruleName];
-
-                if (!isset($this->loadedRules[$classNamespace])) {
-                    $this->loadedRules[$ruleName] = new $classNamespace;
-
-                    if ($this->loadedRules[$ruleName]->hasParameter()) {
-                        $this->loadedRules[$ruleName]->setParameter($parameter);
-                    }
+                if ($rule->hasParameter()) {
+                    $rule->setParameter($parameter);
                 }
 
                 $data = isset($_REQUEST[$fieldName]) ? $_REQUEST[$fieldName] : null;
 
-                if (!$this->loadedRules[$ruleName]->applyRule($data)) {
-                    $customErrorMessage = $this->getMessage($this->loadedRules[$ruleName]->getMessage());
+                if (!$rule->applyRule($data)) {
+                    $customErrorMessage = $this->getMessage($rule->getMessage());
 
                     if (isset($this->messages[$fieldName][$ruleName])) {
                         $customErrorMessage = $this->messages[$fieldName][$ruleName];

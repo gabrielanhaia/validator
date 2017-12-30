@@ -1,6 +1,6 @@
 <?php
 
-namespace Vendor\Rules;
+namespace Validator\Rules;
 
 use Validator\Contract\Rule;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Validator\Exception;
+namespace Validator\Exceptions;
 
 /**
  * Class RuleNotFound

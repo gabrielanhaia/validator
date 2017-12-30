@@ -1,6 +1,6 @@
 <?php
 
-namespace Vendor\Rules;
+namespace Validator\Rules;
 
 use Validator\Contract\Rule;
 
@@ -35,7 +35,7 @@ class Email extends Rule
     /**
      * {@inheritdoc}
      */
-    public function getMessage(): array
+    public function getMessage()
     {
         return [
             'en' => 'Is not a valid email.',

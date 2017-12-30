@@ -2,7 +2,7 @@
 
 namespace Validator;
 
-use Vendor\{
+use Validator\{
     Rules\RulesMap
 };
 
@@ -19,7 +19,6 @@ abstract class RequestValidator
     /**
      * RequestValidator constructor.
      * @param Profile|null $profile
-     * @throws Exception\RuleNotFound
      */
     public function __construct(Profile $profile = null)
     {

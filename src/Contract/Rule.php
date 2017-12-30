@@ -28,9 +28,9 @@ abstract class Rule
 
     /**
      * Returns the rule validation failure message.
-     * @return string
+     * @return array|string
      */
-    abstract public function getMessage(): array;
+    abstract public function getMessage();
 
     /**
      * Defines whether the validation rule has parameters.

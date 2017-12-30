@@ -1,6 +1,6 @@
 <?php
 
-namespace Vendor\Rules;
+namespace Validator\Rules;
 
 use Validator\Contract\Rule;
 
@@ -37,7 +37,7 @@ class MinimumSize extends Rule
     /**
      * {@inheritdoc}
      */
-    public function getMessage(): array
+    public function getMessage()
     {
         return [
             'en' => 'Size did not reach expected number of characters.',

@@ -1,6 +1,6 @@
 <?php
 
-namespace Vendor\Rules;
+namespace Validator\Rules;
 
 use Validator\Contract\Rule;
 
@@ -35,11 +35,11 @@ class Required extends Rule
     /**
      * {@inheritdoc}
      */
-    public function getMessage(): array
+    public function getMessage()
     {
         return [
-            'Not specified.',
-            'Campo de preenchimento obrigatório.'
+            'en' => 'Not specified.',
+            'pt-br' => 'Campo de preenchimento obrigatório.'
         ];
     }
 }

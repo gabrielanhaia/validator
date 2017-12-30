@@ -1,6 +1,6 @@
 <?php
 
-namespace Vendor\Rules;
+namespace Validator\Rules;
 
 use Validator\Contract\Rule;
 
@@ -37,7 +37,7 @@ class MaximumSize extends Rule
     /**
      * {@inheritdoc}
      */
-    public function getMessage(): array
+    public function getMessage()
     {
         return [
             'en' => 'The size has exceeded the character limit.',
