@@ -31,7 +31,7 @@ abstract class RequestValidator
     }
 
     /**
-     * Abstract method that should return a list with field names and their rules.
+     * Method that should return a list with field names and their rules.
      * @return array
      */
     abstract public function getRules(): array;
