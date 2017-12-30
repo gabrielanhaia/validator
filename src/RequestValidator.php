@@ -18,14 +18,21 @@ abstract class RequestValidator
 
     /**
      * RequestValidator constructor.
+     * @param Profile|null $profile
+     * @throws Exception\RuleNotFound
      */
-    public function __construct()
+    public function __construct(Profile $profile = null)
     {
+        if (empty($profile)) {
+            $profile = new Profile();
+        }
+
         $rulesMap = new RulesMap();
         $executor = new Executor(
             $this->formatRules($this->getRules()),
             $this->formatCustomMessages($this->getMessages()),
-            $rulesMap->getMap()
+            $rulesMap->getMap(),
+            $profile
         );
         $executor->execute();
     }

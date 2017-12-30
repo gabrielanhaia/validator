@@ -23,6 +23,9 @@ class Executor
     /** @var Rule[] $loadedRules */
     private $loadedRules = [];
 
+    /** @var Profile $profile */
+    private $profile;
+
     /** @var array $validationFailures */
     protected $validationFailures = [];
 
@@ -31,12 +34,14 @@ class Executor
      * @param array $rules
      * @param array $messages
      * @param array $rulesMap
+     * @param Profile $profile
      */
-    public function __construct(array $rules, array $messages, array $rulesMap)
+    public function __construct(array $rules, array $messages, array $rulesMap, Profile $profile)
     {
         $this->rulesMap = $rulesMap;
         $this->rules = $rules;
         $this->messages = $messages;
+        $this->profile = $profile;
     }
 
     /**
@@ -88,7 +93,7 @@ class Executor
     private function getMessage($message): string
     {
         if (is_array($message)) {
-            return $message['pt-br'];
+            return $message[$this->profile->getLanguage()];
         }
 
         return $message;
