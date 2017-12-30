@@ -19,14 +19,14 @@ class RuleNotFound extends \Exception
      * @param \Throwable|null $previous
      */
     public function __construct(
-        string $ruleName,
-        string $message = '',
-        integer $code = 0,
+        $ruleName,
+        $message = '',
+        $code = 0,
         \Throwable $previous = null
     ) {
         parent::__construct($message, $code, $previous);
 
-        $this->ruleName = $ruleName;
+        $this->setRuleName($ruleName);
     }
 
     /**
@@ -39,11 +39,9 @@ class RuleNotFound extends \Exception
 
     /**
      * @param string $ruleName
-     * @return RuleNotFound
      */
-    public function setRuleName(string $ruleName): RuleNotFound
+    public function setRuleName(string $ruleName)
     {
         $this->ruleName = $ruleName;
-        return $this;
     }
 }
