@@ -86,17 +86,10 @@ class SaveUser extends \Validator\RequestValidator
 
 ## Regras prontas de validação
 
-### Email()
-- Valida se o campo está em um formato de email padrão (#####@###.####).
-
-### Interval(inicio, fim)
-- Valida se o campos está dentro de um intervalo de dois números.
-
-### MinimunSize (minimo)
-- Valida se o campo atinge um tamanho mínimo do parâmetro.
-
-### MaximumSize (máximo)
-- Valida se o campo não ultrapassa o tamanho máximo do parâmetro.
-
-### Required()
-- Valida se um campo foi preenchido.
+Regra de validação | parametros | Descrição
+----------------------| --------------- | ------
+Email                 | Não possuí      | Valida se o campo está em um formato de email padrão (#####@###.####).
+Interval              | (inicio, fim)   | Valida se o campos está dentro de um intervalo de dois números.
+MinimunSize           | (minimo)        | Valida se o campo atinge um tamanho mínimo do parâmetro.
+MaximumSize           | (máximo)        | Valida se o campo não ultrapassa o tamanho máximo do parâmetro.
+Required              | Não possuí      | Valida se um campo foi preenchido.
