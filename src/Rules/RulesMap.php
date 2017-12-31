@@ -22,7 +22,8 @@ class RulesMap
             Required::getName() => Required::class,
             Email::getName() => Email::class,
             MaximumSize::getName() => MaximumSize::class,
-            MinimumSize::getName() => MinimumSize::class
+            MinimumSize::getName() => MinimumSize::class,
+            Interval::getName() => Interval::class
         ];
     }
 }
