@@ -2,10 +2,6 @@
 
 namespace Validator;
 
-use Validator\{
-    Rules\RulesMap
-};
-
 /**
  * Class RequestValidator
  *
@@ -30,6 +26,7 @@ abstract class RequestValidator
         $executor = new Executor(
             $this->formatRules($this->getRules()),
             $this->formatCustomMessages($this->getMessages()),
+            $this->getAlias(),
             $profile
         );
 
@@ -47,6 +44,14 @@ abstract class RequestValidator
      * @return array
      */
     public function getMessages(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function getAlias(): array
     {
         return [];
     }

@@ -3,6 +3,7 @@
 namespace Validator;
 
 use Validator\Exceptions\ParameterNotFound;
+use Validator\Manager\MessageManager;
 use Validator\Manager\RulesLoaderManager;
 
 /**
@@ -11,8 +12,6 @@ use Validator\Manager\RulesLoaderManager;
  */
 class Executor
 {
-    /** @var array $messages */
-    private $messages;
 
     /** @var array $rules */
     private $rules;
@@ -26,20 +25,26 @@ class Executor
     /** @var RulesLoaderManager $rulesLoader */
     private $rulesLoader;
 
+    /** @var MessageManager $messageManager */
+    private $messageManager;
+
     /**
      * Executor constructor.
      * @param array $rules
      * @param array $messages
+     * @param array $aliasFields
      * @param Profile $profile
      */
-    public function __construct(array $rules, array $messages, Profile $profile)
+    public function __construct(array $rules, array $messages, array $aliasFields, Profile $profile)
     {
         $this->rulesLoader = new RulesLoaderManager();
 
         $this->rulesLoader->includeCustomRules($profile->getCustomRules());
 
+        $this->messageManager = new MessageManager($messages, $aliasFields, $profile->getLanguage());
+
         $this->rules = $rules;
-        $this->messages = $messages;
+
         $this->profile = $profile;
     }
 
@@ -67,30 +72,13 @@ class Executor
                 $data = isset($_REQUEST[$fieldName]) ? $_REQUEST[$fieldName] : null;
 
                 if (!$rule->applyRule($data)) {
-                    $customErrorMessage = $this->getMessage($rule->getMessage());
+                    $errorMessage = $this->messageManager->getMessage($fieldName, $ruleName, $rule->getMessage());
 
-                    if (isset($this->messages[$fieldName][$ruleName])) {
-                        $customErrorMessage = $this->messages[$fieldName][$ruleName];
-                    }
-
-                    $this->validationFailures[$fieldName][] = $customErrorMessage;
+                    $this->validationFailures[$fieldName][] = $errorMessage;
                 }
             }
         }
 
         ~r($this->validationFailures);
-    }
-
-    /**
-     * @param array|string $message
-     * @return string
-     */
-    private function getMessage($message): string
-    {
-        if (is_array($message)) {
-            return $message[$this->profile->getLanguage()];
-        }
-
-        return $message;
     }
 }
