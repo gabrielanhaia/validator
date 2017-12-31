@@ -10,8 +10,8 @@ namespace Validator\Contract;
  */
 abstract class Rule
 {
-    /** @var string $parameter */
-    protected $parameter;
+    /** @var array $parameter */
+    protected $parameters;
 
     /**
      * Method that applies the rule.
@@ -36,26 +36,27 @@ abstract class Rule
      * Defines whether the validation rule has parameters.
      * @return bool
      */
-    public function hasParameter()
+    public function hasParameters()
     {
         return false;
     }
 
     /**
+     * @param $position
      * @return string
      */
-    public function getParameter(): string
+    public function getParameter($position): string
     {
-        return $this->parameter;
+        return $this->parameters[$position];
     }
 
     /**
-     * @param mixed $parameter
+     * @param array $parameters
      * @return Rule
      */
-    public function setParameter($parameter): Rule
+    public function setParameters($parameters): Rule
     {
-        $this->parameter = $parameter;
+        $this->parameters = $parameters;
         return $this;
     }
 }

@@ -25,7 +25,7 @@ class MinimumSize extends Rule
      */
     public function applyRule($data): bool
     {
-        $minimumSize = (int) $this->getParameter();
+        $minimumSize = (int) $this->getParameter(0);
 
         if (strlen($data) < $minimumSize) {
             return false;
@@ -48,7 +48,7 @@ class MinimumSize extends Rule
     /**
      * {@inheritdoc}
      */
-    public function hasParameter()
+    public function hasParameters()
     {
         return true;
     }

@@ -52,16 +52,16 @@ class Executor
             foreach ($rulesName as $ruleData) {
 
                 $ruleName = $ruleData['ruleName'];
-                $parameter = $ruleData['parameter'];
+                $parameters = $ruleData['parameter'];
 
                 $rule = $this->rulesLoader->getRule($ruleName);
 
-                if ($rule->hasParameter()) {
-                    if ($parameter === null) {
+                if ($rule->hasParameters()) {
+                    if ($parameters === null) {
                         throw new ParameterNotFound($ruleName);
                     }
 
-                    $rule->setParameter($parameter);
+                    $rule->setParameters($parameters);
                 }
 
                 $data = isset($_REQUEST[$fieldName]) ? $_REQUEST[$fieldName] : null;
