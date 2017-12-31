@@ -35,12 +35,12 @@ class Executor
     public function __construct(array $rules, array $messages, Profile $profile)
     {
         $this->rulesLoader = new RulesLoaderManager();
-        $this->rulesLoader->includeCustomRules($this->profile->getCustomRules());
+
+        $this->rulesLoader->includeCustomRules($profile->getCustomRules());
 
         $this->rules = $rules;
         $this->messages = $messages;
         $this->profile = $profile;
-
     }
 
     /**

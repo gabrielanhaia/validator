@@ -19,6 +19,7 @@ abstract class RequestValidator
     /**
      * RequestValidator constructor.
      * @param Profile|null $profile
+     * @throws Exceptions\ParameterNotFound
      */
     public function __construct(Profile $profile = null)
     {
