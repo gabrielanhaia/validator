@@ -2,7 +2,7 @@
 Permite executar a validação de campos passados em qualquer request.
 
 
-# Installation (Instalação)
+## Installation (Instalação)
 
 Installation by composer (Instalação pelo composer):
 ```sh
@@ -13,8 +13,7 @@ or add the dependency on your **composer.json** and: (ou adicione a denpendênci
 composer install
 ```
 
-
-# Use (Uso)
+## Use (Uso)
 ###1 - Criando um novo RequestValidator (simples)
 
 Para criar um nova RequestValidartor em seu projeto basta criar uma classe que extenda de '\Validator\RequestValidator'
@@ -53,13 +52,13 @@ Para passar mais de um parâmetro por campo basta usar o separador ';', exemplo:
 
 *Nota: O único método obrigatório a ser implementado pela interface é o 'getRules()'.
 
-###2 - Validações com parâmetros
+### 2 - Validações com parâmetros
 
 Algumas regras de validação possuem parâmetros obrigatórios a serem passadados, as regras são:
-1 MinimunSize (1 parâmetro)
-2 MaximunSize (1 parâmetro)
-3 Interval (2 parâmetros)
-4 Regras personalizadas (n parâmetros)
+* MinimunSize (1 parâmetro)
+* MaximunSize (1 parâmetro)
+* Interval (2 parâmetros)
+* Regras personalizadas (n parâmetros)
 
 ```php
 <?php
@@ -79,10 +78,25 @@ class SaveUser extends \Validator\RequestValidator
 }
 ```
 
-###3 - Mensagens de validação
-###4 - Nomes de parâmetro e apelidos nas mensagens
-###5 - Entendendo a classe 'Validation\Profile'
-###6 - Modificando o idioma das mensagens
-###7 - Criando validações personalizadas
+### 3 - Mensagens de validação
+### 4 - Nomes de parâmetro e apelidos nas mensagens
+### 5 - Entendendo a classe 'Validation\Profile'
+### 6 - Modificando o idioma das mensagens
+### 7 - Criando validações personalizadas
 
+## Regras prontas de validação
 
+### Email()
+- Valida se o campo está em um formato de email padrão (#####@###.####).
+
+### Interval(inicio, fim)
+- Valida se o campos está dentro de um intervalo de dois números.
+
+### MinimunSize (minimo)
+- Valida se o campo atinge um tamanho mínimo do parâmetro.
+
+### MaximumSize (máximo)
+- Valida se o campo não ultrapassa o tamanho máximo do parâmetro.
+
+### Required()
+- Valida se um campo foi preenchido.
