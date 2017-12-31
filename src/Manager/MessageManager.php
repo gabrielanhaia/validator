@@ -46,10 +46,10 @@ class MessageManager
             $message = $this->customMessages[$fieldName][$ruleName];
         }
 
-        $message = str_replace('_fieldName_', $fieldName, $message);
+        $message = str_replace('{fieldName}', $fieldName, $message);
 
         if (isset($this->aliasFields[$fieldName])) {
-            $message = str_replace('_fieldAlias_', $this->aliasFields[$fieldName], $message);
+            $message = str_replace('{fieldAlias}', $this->aliasFields[$fieldName], $message);
         }
 
         return $message;
