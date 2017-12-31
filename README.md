@@ -6,7 +6,7 @@ Permite executar a validação de campos passados em qualquer request.
 
 Installation by composer (Instalação pelo composer):
 ```sh
-composer require gabrielanhaia/masknizzer
+composer require gabrielanhaia/validator
 ```
 or add the dependency on your **composer.json** and: (ou adicione a denpendência em seu **composer.json** e:)
 ```sh
@@ -86,10 +86,10 @@ class SaveUser extends \Validator\RequestValidator
 
 ## Regras prontas de validação
 
-Regra de validação | parametros | Descrição
+Regra de validação    | parametros      | Descrição
 ----------------------| --------------- | ------
-Email                 | Não possuí      | Valida se o campo está em um formato de email padrão (#####@###.####).
+Email                 | Não possui      | Valida se o campo está em um formato de email padrão (#####@###.####).
 Interval              | (inicio, fim)   | Valida se o campos está dentro de um intervalo de dois números.
 MinimunSize           | (minimo)        | Valida se o campo atinge um tamanho mínimo do parâmetro.
 MaximumSize           | (máximo)        | Valida se o campo não ultrapassa o tamanho máximo do parâmetro.
-Required              | Não possuí      | Valida se um campo foi preenchido.
+Required              | Não possui      | Valida se um campo foi preenchido.
