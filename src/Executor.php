@@ -2,6 +2,7 @@
 
 namespace Validator;
 
+use Validator\Exceptions\ParameterNotFound;
 use Validator\Manager\RulesLoaderManager;
 
 /**
@@ -56,6 +57,10 @@ class Executor
                 $rule = $this->rulesLoader->getRule($ruleName);
 
                 if ($rule->hasParameter()) {
+                    if ($parameter === null) {
+                        throw new ParameterNotFound($ruleName);
+                    }
+
                     $rule->setParameter($parameter);
                 }
 
