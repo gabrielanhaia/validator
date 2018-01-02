@@ -54,7 +54,7 @@ Para passar mais de um parâmetro por campo basta usar o separador ';', exemplo:
 
 ### 2 - Validações com parâmetros
 
-Algumas regras de validação possuem parâmetros obrigatórios a serem passadados, as regras são:
+Algumas regras de validação possuem parâmetros obrigatórios a serem passados, as regras são:
 * MinimunSize (1 parâmetro)
 * MaximunSize (1 parâmetro)
 * Interval (2 parâmetros)
@@ -78,10 +78,96 @@ class SaveUser extends \Validator\RequestValidator
 }
 ```
 
-### 3 - Mensagens de validação
+### 3 - Mensagens de validação e idioma
+
+Por padrão uma mensagem pré-configurada é lançada caso a regra não passe na validação.
+
+É possível sobreescrever a mensagem de validação ao seu gosto, basta sobreescrever o método 'getMessages(): array' em sua classe de request, este método deve retornar um array com as mensagens customizadas.
+
+Exemplo:
+
+```php
+/**
+ * Class TestRequestValidator
+ */
+class TestRequestValidator extends \Validator\RequestValidator
+{
+    /**
+     * @return array
+     */
+    public function getRules(): array
+    {
+        return [
+            'mail' =>  'email;required',
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getMessages(): array
+    {
+        return [
+            'mail.email' => 'Não é um e-mail válido.',
+            'mail.required' => 'O preenchimento do e-mail é obrigatório.'
+        ];
+    }
+}
+```
+
+No indice do array existe uma separação por ponto, antes do ponto está no nome do campo passa do request, depois é o nome da regra de validação.
+
+TODO: Edit
+
 ### 4 - Nomes de parâmetro e apelidos nas mensagens
+
+Muitas vezes  necessário que na mensagem de validação seja também informado o nome do campo que falhou no teste, com isso existem duas opções:
+
+1 '{fieldName}' = Nome do campo.
+2 '{fieldAlias}' = Apelido criado para o nome do campo.
+
+Para utilizar o '{fieldName}' basta inseri-lo dentro da string na qual se queira customizar, exemplo:
+```php
+    /**
+     * @return array
+     */
+    public function getMessages(): array
+    {
+        return [
+            'mail.required' => 'O campo {fieldName} é de preenchimento do e-mail é obrigatório.'
+        ];
+    }
+```
+a saída será: "O campo mail é de preenchimento do e-mail é obrigatório."
+
+Para que não seja exibido o nome bruto do campo é possível utilizar a tag '{fieldAlias}', porém é necessário sobreescrever o método 'getAlias(): array', exemplo:
+```php
+    /**
+     * @return array
+     */
+    public function getMessages(): array
+    {
+        return [
+            'mail.required' => 'O campo {fieldName} é de preenchimento do e-mail é obrigatório.'
+        ];
+    }
+    
+    /**
+     * @return array
+     */
+    public function getAlias(): array
+    {
+        return [
+            'mail' => 'E-mail'
+        ];
+    }
+```
+a saída será: "O campo E-mail é de preenchimento do e-mail é obrigatório."
+
+Obs: Caso o alias não seja definido, o próprio nome do campo será usado.
+
 ### 5 - Entendendo a classe 'Validation\Profile'
-### 6 - Modificando o idioma das mensagens
+### 6 - Entendendo a classe 'Validation\Profile'
 ### 7 - Criando validações personalizadas
 
 ## Regras prontas de validação
