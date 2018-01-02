@@ -167,7 +167,11 @@ a saída será: "O campo E-mail é de preenchimento do e-mail é obrigatório."
 Obs: Caso o alias não seja definido, o próprio nome do campo será usado.
 
 ### 5 - Entendendo a classe 'Validation\Profile'
-### 6 - Entendendo a classe 'Validation\Profile'
+
+#### 5.1 - Alteração de idioma
+
+O sistema suporta multi-idiomas de mensagens de validação, por padro está definido com 'Inglês (en)', porém é possível configurar em 'Português Brasil (pt-br)'. Basta passar para o primeiro parâmetro do construtor de 'Validation\Profile' ou usar o método 'setLanguage(string language)'.
+
 ### 7 - Criando validações personalizadas
 
 ## Regras prontas de validação
