@@ -14,7 +14,7 @@ composer install
 ```
 
 ## Use (Uso)
-###1 - Criando um novo RequestValidator (simples)
+### 1 - Criando um novo RequestValidator (simples)
 
 Para criar um nova RequestValidartor em seu projeto basta criar uma classe que extenda de '\Validator\RequestValidator'
 Exemplo:
