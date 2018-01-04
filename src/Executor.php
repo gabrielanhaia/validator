@@ -87,8 +87,6 @@ class Executor
             }
         }
 
-        if (!empty($this->validationFailures)) {
-            ~r($this->validationFailures);
-        }
+        $this->sessionMessageManager->writeErrors($this->validationFailures);
     }
 }

@@ -39,7 +39,7 @@ class Email extends Rule
     {
         return [
             'en' => 'Is not a valid email.',
-            'pt-br' => 'Não é um e-mail em fomato válido.'
+            'pt-br' => 'Não é um e-mail em formato válido.'
         ];
     }
 }
