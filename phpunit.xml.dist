@@ -1,0 +1,19 @@
+<phpunit
+        bootstrap="vendor/autoload.php"
+        verbose="true"
+        colors="true"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true">
+    <testsuites>
+        <testsuite name="Validator Tests">
+            <directory suffix=".php">tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">.</directory>
+        </whitelist>
+    </filter>
+</phpunit>
