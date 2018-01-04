@@ -2,9 +2,11 @@
 
 namespace Validator;
 
+use Validator\Entity\Error;
 use Validator\Exceptions\ParameterNotFound;
 use Validator\Manager\MessageManager;
 use Validator\Manager\RulesLoaderManager;
+use Validator\Manager\SessionMessageManager;
 
 /**
  * Class Executor
@@ -12,7 +14,6 @@ use Validator\Manager\RulesLoaderManager;
  */
 class Executor
 {
-
     /** @var array $rules */
     private $rules;
 
@@ -28,6 +29,9 @@ class Executor
     /** @var MessageManager $messageManager */
     private $messageManager;
 
+    /** @var SessionMessageManager $sessionMessageManager */
+    private $sessionMessageManager;
+
     /**
      * Executor constructor.
      * @param array $rules
@@ -38,6 +42,8 @@ class Executor
     public function __construct(array $rules, array $messages, array $aliasFields, Profile $profile)
     {
         $this->rulesLoader = new RulesLoaderManager();
+
+        $this->sessionMessageManager = new SessionMessageManager();
 
         $this->rulesLoader->includeCustomRules($profile->getCustomRules());
 
@@ -74,11 +80,15 @@ class Executor
                 if (!$rule->applyRule($data)) {
                     $errorMessage = $this->messageManager->getMessage($fieldName, $ruleName, $rule->getMessage());
 
-                    $this->validationFailures[$fieldName][] = $errorMessage;
+                    $error = new Error($fieldName, $errorMessage);
+
+                    $this->validationFailures[] = $error;
                 }
             }
         }
 
-        ~r($this->validationFailures);
+        if (!empty($this->validationFailures)) {
+            ~r($this->validationFailures);
+        }
     }
 }
