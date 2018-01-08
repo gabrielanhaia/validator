@@ -6,18 +6,51 @@ use Validator\Rules\Required;
 
 class RequiredTest extends \Tests\TestCase
 {
-    public function testRequiredSuccess()
+    /**
+     * @dataProvider requiredSuccessDataProvider
+     */
+    public function testRequiredSuccess($data)
     {
         $requiredRule = new Required();
 
-        $this->assertTrue($requiredRule->applyRule('test'));
+        $this->assertTrue($requiredRule->applyRule($data));
     }
 
-    public function testRequiredFail()
+    /**
+     * @dataProvider requiredFailDataProvider
+     */
+    public function testRequiredFail($data)
     {
         $requiredRule = new Required();
 
-        $this->assertFalse($requiredRule->applyRule(''));
-        $this->assertFalse($requiredRule->applyRule(null));
+        $this->assertFalse($requiredRule->applyRule($data));
+    }
+
+    /**
+     * @return array
+     */
+    public function requiredFailDataProvider()
+    {
+        return [
+            [
+                'data' => '',
+            ], [
+                'data' => null
+            ]
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function requiredSuccessDataProvider()
+    {
+        return [
+            [
+                'data' => 'test',
+            ], [
+                'data' => 0
+            ]
+        ];
     }
 }
