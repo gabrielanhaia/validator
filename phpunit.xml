@@ -7,10 +7,9 @@
         convertWarningsToExceptions="true">
     <testsuites>
         <testsuite name="Validator Tests">
-            <directory suffix=".php">tests</directory>
+            <directory suffix="./tests/">tests</directory>
         </testsuite>
     </testsuites>
-
     <filter>
         <whitelist>
             <directory suffix=".php">.</directory>
