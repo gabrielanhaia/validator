@@ -25,7 +25,7 @@ class Required extends Rule
      */
     public function applyRule($data): bool
     {
-        if (empty($data)) {
+        if (empty($data) && $data !== 0) {
             return false;
         }
 
