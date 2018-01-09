@@ -31,23 +31,23 @@ class Cpf extends Rule
             return false;
         }
 
-        for ($i = 0, $j = 10, $soma = 0; $i < 9; $i++, $j--) {
-            $soma += $cpf{$i} * $j;
+        for ($i = 0, $j = 10, $sum = 0; $i < 9; $i++, $j--) {
+            $sum += $cpf{$i} * $j;
         }
 
-        $resto = $soma % 11;
+        $rest = $sum % 11;
 
-        if ($cpf{9} != ($resto < 2 ? 0 : 11 - $resto)) {
+        if ($cpf{9} != ($rest < 2 ? 0 : 11 - $rest)) {
             return false;
         }
 
-        for ($i = 0, $j = 11, $soma = 0; $i < 10; $i++, $j--) {
-            $soma += $cpf{$i} * $j;
+        for ($i = 0, $j = 11, $sum = 0; $i < 10; $i++, $j--) {
+            $sum += $cpf{$i} * $j;
         }
 
-        $resto = $soma % 11;
+        $rest = $sum % 11;
 
-        return $cpf{10} == ($resto < 2 ? 0 : 11 - $resto);
+        return $cpf{10} == ($rest < 2 ? 0 : 11 - $rest);
     }
 
     /**
