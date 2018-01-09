@@ -1,3 +1,9 @@
+[![Jenkins](https://img.shields.io/jenkins/s/https/jenkins.qa.ubuntu.com/view/Precise/view/All%20Precise/job/precise-desktop-amd64_default.svg)]()
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/symfony/symfony.svg)]()
+[![Validator](https://img.shields.io/badge/Validator-Quality-green.svg)]()
+[![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)]()
+
+
 # Request Validator
 Permite executar a validação de campos passados em qualquer request.
 
