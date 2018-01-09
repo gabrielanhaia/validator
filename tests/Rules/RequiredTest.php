@@ -4,6 +4,12 @@ namespace Tests\Rules;
 
 use Validator\Rules\Required;
 
+/**
+ * Class RequiredTest
+ *
+ * @author Gabriel Anhaia <gabriel@mestredev.com.br>
+ * @package Tests\Rules
+ */
 class RequiredTest extends \Tests\TestCase
 {
     /**
