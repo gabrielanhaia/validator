@@ -23,7 +23,9 @@ class RulesMap
             Email::getName() => Email::class,
             MaximumSize::getName() => MaximumSize::class,
             MinimumSize::getName() => MinimumSize::class,
-            Interval::getName() => Interval::class
+            Interval::getName() => Interval::class,
+            Cpf::getName() => Cpf::class,
+            Cnpj::getName() => Cnpj::class,
         ];
     }
 }
