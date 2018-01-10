@@ -25,7 +25,7 @@ class Cnpj extends Rule
      */
     public function applyRule($data): bool
     {
-        $cnpj = preg_replace('/[^0-9]/', '', (string) $cnpj);
+        $cnpj = preg_replace('/[^0-9]/', '', (string) $data);
         
         if (strlen($cnpj) != 14) {
             return false;
